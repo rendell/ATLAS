@@ -1,0 +1,40 @@
+---
+title: "ATLAS"
+author: "Rendell E . de Kort"
+date: "10/5/2019"
+output: html_document
+---
+
+```{r}
+setwd("~/RDA")
+library(ggplot2)
+library(waffle)
+```
+
+
+```{r setup, include=FALSE}
+share <- data.frame(
+  Share = c("Domestic market","Transhipment"),
+  hr_percentage = c(8,92),
+  stringsAsFactors = FALSE)
+```
+
+```{r}
+plot_share <- ggplot(data = share, 
+         aes(fill = Share, values = hr_percentage)) +
+  geom_waffle(n_rows = 10, size = 0.5, 
+              colour ="#ffffff",
+              flip = TRUE) +
+  scale_fill_manual(values = c("#e7bd42","#00006f")) +
+  coord_equal() +
+  theme_minimal() +
+  theme_enhance_waffle() +
+  labs(title = "Projected share in revenue generation",
+       subtitle = "ATLAS",
+       caption = "Plot prepared by ATLAS")+
+   theme(title = Blue.text, axis.title = Blue.text,text=element_text(family="Franklin Gothic Book"),legend.title = element_blank()
+         )
+
+ggsave("plot_share.png", plot_gender, width=4, height=3)
+```
+
